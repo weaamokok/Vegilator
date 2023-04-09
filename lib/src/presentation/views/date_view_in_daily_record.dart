@@ -39,7 +39,7 @@ class DateViewInDailyRecord extends StatelessWidget {
               ],
             ),
             Divider(
-              color: Black.withOpacity(.6),
+              color: Black.withOpacity(.2),
               height: 10,
             )
           ],

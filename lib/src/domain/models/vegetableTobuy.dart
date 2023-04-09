@@ -9,8 +9,8 @@ import 'package:vegilator/src/domain/models/vegetable.dart';
 
 class VegetableTobuy extends Equatable {
   final Vegetable vege;
-  final Double amount;
-  final Double prize;
+  final double amount;
+  final double prize;
   const VegetableTobuy({
     required this.vege,
     required this.amount,
@@ -19,8 +19,8 @@ class VegetableTobuy extends Equatable {
 
   VegetableTobuy copyWith({
     Vegetable? vege,
-    Double? amount,
-    Double? prize,
+    double? amount,
+    double? prize,
   }) {
     return VegetableTobuy(
       vege: vege ?? this.vege,

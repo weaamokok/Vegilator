@@ -2,11 +2,34 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:vegilator/src/domain/models/invoice.dart';
+import 'package:vegilator/src/domain/models/vegetable.dart';
+import 'package:vegilator/src/domain/models/vegetableTobuy.dart';
 import 'package:vegilator/src/presentation/widgets/invoice_widget.dart';
 
 import '../../utils/constants/colors.dart';
 import '../widgets/app_bar.dart';
 import 'date_view_in_daily_record.dart';
+
+List<VegetableTobuy> vagetablesList = [
+  VegetableTobuy(
+      amount: 1.5,
+      prize: 12,
+      vege: Vegetable(
+          id: 0,
+          image: AssetImage('images/tomato 1.png'),
+          buyingPrizePerKg: 12,
+          name: 'طماطم',
+          salePrizePerKg: 15)),
+  VegetableTobuy(
+      amount: 1.5,
+      prize: 12,
+      vege: Vegetable(
+          id: 0,
+          image: AssetImage('images/tomato 1.png'),
+          buyingPrizePerKg: 12,
+          name: 'طماطم',
+          salePrizePerKg: 15))
+];
 
 class DailyRecord extends StatelessWidget {
   const DailyRecord({Key? key}) : super(key: key);
@@ -29,13 +52,23 @@ class DailyRecord extends StatelessWidget {
                     children: [
                       Text(
                         'مجموع المبيعات',
-                        style: TextStyle(color: Black),
+                        style: TextStyle(color: Black, fontSize: 13),
                       ),
-                      Text(
-                        '180 ' + 'د.ل',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Black.withOpacity(.8)),
+                      Row(
+                        children: [
+                          Text(
+                            '180 ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Black.withOpacity(.8)),
+                          ),
+                          Text(
+                            'د.ل',
+                            style: TextStyle(
+                                fontSize: 14, color: Black.withOpacity(.8)),
+                          ),
+                        ],
                       )
                     ]),
               ),
@@ -49,6 +82,7 @@ class DailyRecord extends StatelessWidget {
                       invoice: Invoice(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
+                          veges: vagetablesList,
                           releaseDate: '2:10 مساءاَ')),
                   SizedBox(
                     height: 10,

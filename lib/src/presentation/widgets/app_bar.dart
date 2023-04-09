@@ -10,7 +10,7 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       height: 100,
       child: AppBar(
-        elevation: 10,
+        elevation: 5,
         shadowColor: Colors.black54,
         centerTitle: true,
         actions: topIcon != null
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
               EdgeInsets.only(top: MediaQuery.of(context).size.height * .03),
           child: Text(title,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
         ),
       ),
     );

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 
 class addCard extends StatelessWidget {
-  const addCard({required this.onAdd});
+  const addCard({required this.onAdd,});
   final Function onAdd;
+
 
   @override
   Widget build(BuildContext context) {
