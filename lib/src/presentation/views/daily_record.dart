@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:vegilator/src/domain/models/invoice.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/domain/models/vegetableTobuy.dart';
-import 'package:vegilator/src/presentation/widgets/invoice_widget.dart';
+import 'package:vegilator/src/presentation/widgets/invoice_related_widgets/invoice_widget.dart';
 
 import '../../utils/constants/colors.dart';
 import '../widgets/app_bar.dart';
+import 'daily_purchases/adding_purchase_view.dart';
 import 'date_view_in_daily_record.dart';
 
 List<VegetableTobuy> vagetablesList = [
@@ -135,7 +136,13 @@ class DailyRecord extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(30.0),
             child: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddingPurchaseView(),
+                    ));
+              },
               child: Icon(Icons.add, size: 30),
               backgroundColor: PrimaryGreen,
             ),

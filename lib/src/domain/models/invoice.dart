@@ -15,15 +15,16 @@ class Invoice extends Equatable {
   final double? sumOfVegetablePrize;
   final double? discount;
   final double? totalPrize;
-  const Invoice({
-    this.id,
-    this.serialNum,
-    this.releaseDate,
-    this.veges,
-    this.sumOfVegetablePrize,
-    this.discount,
-    this.totalPrize,
-  });
+  final bool? verifyed;
+  const Invoice(
+      {this.id,
+      this.serialNum,
+      this.releaseDate,
+      this.veges,
+      this.sumOfVegetablePrize,
+      this.discount,
+      this.totalPrize,
+      this.verifyed});
 
   Invoice copyWith({
     int? id,
@@ -61,17 +62,28 @@ class Invoice extends Equatable {
     return Invoice(
       id: map['id'] != null ? map['id'] as int : null,
       serialNum: map['serialNum'] != null ? map['serialNum'] as String : null,
-      releaseDate: map['releaseDate'] != null ? map['releaseDate'] as String : null,
-      veges: map['veges'] != null ? List<VegetableTobuy>.from((map['veges'] as List<int>).map<VegetableTobuy?>((x) => VegetableTobuy.fromMap(x as Map<String,dynamic>),),) : null,
-      sumOfVegetablePrize: map['sumOfVegetablePrize'] != null ? map['sumOfVegetablePrize'] as double : null,
+      releaseDate:
+          map['releaseDate'] != null ? map['releaseDate'] as String : null,
+      veges: map['veges'] != null
+          ? List<VegetableTobuy>.from(
+              (map['veges'] as List<int>).map<VegetableTobuy?>(
+                (x) => VegetableTobuy.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      sumOfVegetablePrize: map['sumOfVegetablePrize'] != null
+          ? map['sumOfVegetablePrize'] as double
+          : null,
       discount: map['discount'] != null ? map['discount'] as double : null,
-      totalPrize: map['totalPrize'] != null ? map['totalPrize'] as double : null,
+      totalPrize:
+          map['totalPrize'] != null ? map['totalPrize'] as double : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Invoice.fromJson(String source) => Invoice.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Invoice.fromJson(String source) =>
+      Invoice.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool get stringify => true;
