@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vegilator/src/presentation/views/profile_view.dart';
@@ -10,6 +11,7 @@ import 'daily_record.dart';
 import 'expenses_view.dart';
 import 'inventory_view.dart';
 
+@RoutePage()
 class Root extends StatefulWidget {
   const Root({Key? key}) : super(key: key);
 

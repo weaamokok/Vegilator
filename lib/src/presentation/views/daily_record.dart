@@ -1,35 +1,20 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/invoice.dart';
+import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
-import 'package:vegilator/src/domain/models/vegetableTobuy.dart';
+import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 import 'package:vegilator/src/presentation/widgets/invoice_related_widgets/invoice_widget.dart';
 
 import '../../utils/constants/colors.dart';
 import '../widgets/app_bar.dart';
 import 'daily_purchases/adding_purchase_view.dart';
 import 'date_view_in_daily_record.dart';
+import 'inventory_view.dart';
 
-List<VegetableTobuy> vagetablesList = [
-  VegetableTobuy(
-      amount: 1.5,
-      prize: 12,
-      vege: Vegetable(
-          id: 0,
-          image: AssetImage('images/tomato 1.png'),
-          buyingPrizePerKg: 12,
-          name: 'طماطم',
-          salePrizePerKg: 15)),
-  VegetableTobuy(
-      amount: 1.5,
-      prize: 12,
-      vege: Vegetable(
-          id: 0,
-          image: AssetImage('images/tomato 1.png'),
-          buyingPrizePerKg: 12,
-          name: 'طماطم',
-          salePrizePerKg: 15))
+List<PurchasedVegetables> vagetablesList = [
+  PurchasedVegetables(id: 1, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1),
+  PurchasedVegetables(id: 10, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1)
 ];
 
 class DailyRecord extends StatelessWidget {
@@ -80,7 +65,7 @@ class DailyRecord extends StatelessWidget {
                     horizontal: MediaQuery.of(context).size.width * .050),
                 children: [
                   InvoiceWidget(
-                      invoice: Invoice(
+                      invoice: Purchase(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
                           veges: vagetablesList,
@@ -89,7 +74,7 @@ class DailyRecord extends StatelessWidget {
                     height: 10,
                   ),
                   InvoiceWidget(
-                      invoice: Invoice(
+                      invoice: Purchase(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
                           releaseDate: '2:10 مساءاَ')),
@@ -97,7 +82,7 @@ class DailyRecord extends StatelessWidget {
                     height: 10,
                   ),
                   InvoiceWidget(
-                      invoice: Invoice(
+                      invoice: Purchase(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
                           releaseDate: '2:10 مساءاَ')),
@@ -105,7 +90,7 @@ class DailyRecord extends StatelessWidget {
                     height: 10,
                   ),
                   InvoiceWidget(
-                      invoice: Invoice(
+                      invoice: Purchase(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
                           releaseDate: '2:10 مساءاَ')),
@@ -113,7 +98,7 @@ class DailyRecord extends StatelessWidget {
                     height: 10,
                   ),
                   InvoiceWidget(
-                      invoice: Invoice(
+                      invoice: Purchase(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
                           releaseDate: '2:10 مساءاَ')),
@@ -121,7 +106,7 @@ class DailyRecord extends StatelessWidget {
                     height: 10,
                   ),
                   InvoiceWidget(
-                      invoice: Invoice(
+                      invoice: Purchase(
                           serialNum: '#8979A',
                           totalPrize: 150.0 as double,
                           releaseDate: '2:10 مساءاَ'))

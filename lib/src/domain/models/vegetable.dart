@@ -3,12 +3,17 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
+import 'package:floor/floor.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../utils/constants/strings.dart';
+
+@Entity(tableName: vegetablesTable)
 class Vegetable extends Equatable {
-  final int id;
+  @PrimaryKey(autoGenerate: true)
+  final String id;
   final String name;
-  final ImageProvider image;
+  final String image; //I store the base64Encode of th Uint8list of the image
   final int buyingPrizePerKg;
   final int salePrizePerKg;
   const Vegetable({
@@ -20,9 +25,9 @@ class Vegetable extends Equatable {
   });
 
   Vegetable copyWith({
-    int? id,
+    String? id,
     String? name,
-    ImageProvider? image,
+    String? image,
     int? buyingPrizePerKg,
     int? salePrizePerKg,
   }) {
@@ -47,9 +52,9 @@ class Vegetable extends Equatable {
 
   factory Vegetable.fromMap(Map<String, dynamic> map) {
     return Vegetable(
-      id: map['id'] as int,
+      id: map['id'] as String,
       name: map['name'] as String,
-      image: map['image'] as ImageProvider,
+      image: map['image'] as String,
       buyingPrizePerKg: map['buyingPrizePerKg'] as int,
       salePrizePerKg: map['salePrizePerKg'] as int,
     );

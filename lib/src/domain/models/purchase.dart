@@ -3,20 +3,25 @@ import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:equatable/equatable.dart';
+import 'package:floor/floor.dart';
 
 import 'package:vegilator/src/domain/models/vegetable.dart';
-import 'package:vegilator/src/domain/models/vegetableTobuy.dart';
+import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 
-class Invoice extends Equatable {
+@Entity(tableName: 'purchases')
+class Purchase extends Equatable {
+  @PrimaryKey(autoGenerate: true)
   final int? id;
   final String? serialNum;
   final String? releaseDate;
-  final List<VegetableTobuy>? veges;
   final double? sumOfVegetablePrize;
   final double? discount;
   final double? totalPrize;
   final bool? verifyed;
-  const Invoice(
+  @ignore
+  final List<PurchasedVegetables>?
+      veges; //ignoring this field to prevent floor from generating a column for it
+  const Purchase(
       {this.id,
       this.serialNum,
       this.releaseDate,
@@ -26,16 +31,16 @@ class Invoice extends Equatable {
       this.totalPrize,
       this.verifyed});
 
-  Invoice copyWith({
+  Purchase copyWith({
     int? id,
     String? serialNum,
     String? releaseDate,
-    List<VegetableTobuy>? veges,
+    List<PurchasedVegetables>? veges,
     double? sumOfVegetablePrize,
     double? discount,
     double? totalPrize,
   }) {
-    return Invoice(
+    return Purchase(
       id: id ?? this.id,
       serialNum: serialNum ?? this.serialNum,
       releaseDate: releaseDate ?? this.releaseDate,
@@ -58,16 +63,16 @@ class Invoice extends Equatable {
     };
   }
 
-  factory Invoice.fromMap(Map<String, dynamic> map) {
-    return Invoice(
+  factory Purchase.fromMap(Map<String, dynamic> map) {
+    return Purchase(
       id: map['id'] != null ? map['id'] as int : null,
       serialNum: map['serialNum'] != null ? map['serialNum'] as String : null,
       releaseDate:
           map['releaseDate'] != null ? map['releaseDate'] as String : null,
       veges: map['veges'] != null
-          ? List<VegetableTobuy>.from(
-              (map['veges'] as List<int>).map<VegetableTobuy?>(
-                (x) => VegetableTobuy.fromMap(x as Map<String, dynamic>),
+          ? List<PurchasedVegetables>.from(
+              (map['veges'] as List<int>).map<PurchasedVegetables?>(
+                (x) => PurchasedVegetables.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
@@ -82,8 +87,8 @@ class Invoice extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory Invoice.fromJson(String source) =>
-      Invoice.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Purchase.fromJson(String source) =>
+      Purchase.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool get stringify => true;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 
 class VegetableToSelect extends StatelessWidget {
-  const VegetableToSelect({Key? key}) : super(key: key);
+  const VegetableToSelect();
 //todo add constructors
   @override
   Widget build(BuildContext context) {

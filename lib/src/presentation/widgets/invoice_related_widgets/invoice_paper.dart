@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/invoice.dart';
+import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/presentation/widgets/UI_elements/zigzag.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -7,7 +9,7 @@ import '../UI_elements/dashed_line.dart';
 
 class InvoicePaper extends StatelessWidget {
   const InvoicePaper({required this.invoice});
-  final Invoice invoice;
+  final Purchase invoice;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,12 +51,13 @@ class InvoicePaper extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     textDirection: TextDirection.rtl,
                     children: [
-                      Image(image: invoice.veges![index].vege.image),
+                      Image.asset('images/tomato 1.png'),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(invoice.veges![index].vege.name),
+                          Text(
+                              'طماطم'), //what is better to call the whole vegeInfo or link and bring
                           Text(invoice.veges![index].amount.toString()),
                         ],
                       ),

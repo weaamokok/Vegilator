@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/invoice.dart';
+import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/presentation/widgets/icon_text_card.dart';
 import 'package:vegilator/src/utils/constants/colors.dart';
 
@@ -9,7 +9,7 @@ import '../widgets/UI_elements/zigzag.dart';
 
 class InvoiceView extends StatelessWidget {
   const InvoiceView(this.invoice);
-  final Invoice invoice;
+  final Purchase invoice;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

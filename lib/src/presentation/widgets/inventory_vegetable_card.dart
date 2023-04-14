@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/utils/constants/colors.dart';
@@ -14,7 +16,7 @@ class InventoryVegetableCard extends StatelessWidget {
       width: 156,
       padding: EdgeInsets.symmetric(vertical: 0),
       child: Column(children: [
-        Image(image: vege.image),
+        Image.memory(base64Decode(vege.image)),
         Text(vege.name, style: TextStyle(fontSize: 14)),
         Text(
           vege.salePrizePerKg.toString() + 'د/ كيلو',

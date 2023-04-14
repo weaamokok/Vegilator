@@ -1,16 +1,18 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:auto_route_generator/builder.dart';
-import 'package:auto_route_generator/utils.dart';
-part 'app_router.gr.dart';
+import 'package:vegilator/src/config/router/app_router.gr.dart';
 
-@AutoRouterConfig(generateForDir: [])
-class AppRouter extends _$AppRouter {
+@AutoRouterConfig(
+  replaceInRouteName: 'Screen,Route',
+)
+class AppRouter extends $AppRouter {
   @override
-  // TODO: implement routes
-  List<AutoRoute> get routes => throw UnimplementedError();
-}
+  List<AutoRoute> get routes => [
+        AutoRoute(
+          usesPathAsKey: true,
+          fullMatch: true,
+          page: Root.page,
+        )
 
-final appRouter = AppRouter();
+        /// routes go here
+      ];
+}

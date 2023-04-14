@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/invoice.dart';
+import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/presentation/views/invoice_View.dart';
 
 import '../../../utils/constants/colors.dart';
 
 class InvoiceWidget extends StatelessWidget {
   const InvoiceWidget({required this.invoice});
-  final Invoice invoice;
+  final Purchase invoice;
   @override
   Widget build(BuildContext context) {
     return Container(
