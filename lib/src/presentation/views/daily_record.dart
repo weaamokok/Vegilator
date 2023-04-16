@@ -10,7 +10,7 @@ import '../../utils/constants/colors.dart';
 import '../widgets/app_bar.dart';
 import 'daily_purchases/adding_purchase_view.dart';
 import 'date_view_in_daily_record.dart';
-import 'inventory_view.dart';
+import 'inventory/inventory_view.dart';
 
 List<PurchasedVegetables> vagetablesList = [
   PurchasedVegetables(id: 1, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1),

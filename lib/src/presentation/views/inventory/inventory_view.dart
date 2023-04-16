@@ -7,11 +7,24 @@ import 'package:vegilator/main.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/presentation/widgets/app_bar.dart';
 import 'package:path_provider/path_provider.dart';
-import '../widgets/add_card.dart';
-import '../widgets/inventory_vegetable_card.dart';
-import '../widgets/searchbar.dart';
+import '../../widgets/add_card.dart';
+import '../../widgets/inventory_vegetable_card.dart';
+import '../../widgets/searchbar.dart';
 
 String? im;
+void _openAddVegetbleForm(context) {
+  showModalBottomSheet(
+    context: (context),
+    builder: (context) => addVegetable(),
+  );
+}
+
+Widget addVegetable() {
+  return Container(
+      child: Column(
+    children: [Text('data'), TextFormField(), TextFormField()],
+  ));
+}
 
 Future<String> convertToString() async {
   final ByteData bytes = await rootBundle.load('images/tomato 1.png');
@@ -40,7 +53,7 @@ class _InventoryState extends State<Inventory> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBar(title: 'بضاعة المحل', topIcon: Icons.add),
+        CustomAppBarFirst(context),
         Container(
           margin: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * .050,
@@ -82,7 +95,7 @@ class _InventoryState extends State<Inventory> {
                     salePrizePerKg: 10),
               ),
               addCard(
-                onAdd: () {},
+                onAdd: () {_openAddVegetbleForm(context);},
               )
             ],
           ),
@@ -90,4 +103,35 @@ class _InventoryState extends State<Inventory> {
       ],
     );
   }
+}
+
+Widget CustomAppBarFirst(context) {
+  return Container(
+    height: 100,
+    child: AppBar(
+      elevation: 5,
+      shadowColor: Colors.black54,
+      centerTitle: true,
+      actions: [
+        IconButton(
+          onPressed: () {
+            _openAddVegetbleForm(context);
+          },
+          icon: Icon(
+            Icons.add,
+            size: 30,
+            color: Colors.white,
+          ),
+          padding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).size.height * .03),
+        )
+      ],
+      title: Padding(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * .03),
+        child: Text('بضاعة المحل',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+      ),
+    ),
+  );
 }

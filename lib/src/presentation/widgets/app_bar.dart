@@ -16,8 +16,12 @@ class CustomAppBar extends StatelessWidget {
         actions: topIcon != null
             ? [
                 IconButton(
-                  onPressed: () {},
-                  icon: Icon(topIcon, size: 30),
+                  onPressed:(){},
+                  icon: Icon(
+                    topIcon,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                   padding: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).size.height * .03),
                 )

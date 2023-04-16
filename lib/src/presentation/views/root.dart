@@ -9,7 +9,7 @@ import '../cubits/cubit/nav_bar_cubit.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'daily_record.dart';
 import 'expenses_view.dart';
-import 'inventory_view.dart';
+import 'inventory/inventory_view.dart';
 
 @RoutePage()
 class Root extends StatefulWidget {
