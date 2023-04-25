@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../../domain/models/vegetable.dart';
 import '../../../domain/repositories/database_repository.dart';
@@ -22,7 +23,8 @@ class VegetabesCubit extends Cubit<VegetabesState> {
   }
 
   Future<void> addVegetable({required Vegetable vege}) async {
-    await _databaseRepository.addVegetable(vege);
+    await _databaseRepository.addVegetable(vege).whenComplete(() => debugPrint('added sucessfully'));
+
     emit(await _getAllSavedVegetables());
   }
 

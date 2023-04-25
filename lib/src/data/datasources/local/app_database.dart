@@ -17,4 +17,5 @@ part 'app_database.g.dart';
 abstract class AppDatabase extends FloorDatabase {
   VegetableDao get vegetableDao;
   PurchaseDao get purchaseDao;
+  
 }

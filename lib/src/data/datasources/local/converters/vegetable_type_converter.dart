@@ -9,7 +9,7 @@ class VegetableTypeConverter extends TypeConverter<Vegetable?, String> {
   Vegetable? decode(String databaseValue) {
     final List<String> result = databaseValue.split(',');
     return Vegetable(
-        id: result[0],
+        id: result[0] as int,
         name: result[1],
         image: result[2],
         buyingPrizePerKg: result[3] as int,

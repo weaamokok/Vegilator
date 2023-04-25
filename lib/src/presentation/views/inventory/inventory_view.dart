@@ -1,29 +1,30 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:vegilator/main.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
-import 'package:vegilator/src/presentation/widgets/app_bar.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:vegilator/src/presentation/cubits/cubit/vegetabes_cubit.dart';
+import 'package:vegilator/src/utils/constants/colors.dart';
 import '../../widgets/add_card.dart';
 import '../../widgets/inventory_vegetable_card.dart';
 import '../../widgets/searchbar.dart';
+import 'addVegetablesForm.dart';
 
+List<Vegetable> veges = [];
+
+File? _image;
+final picker = ImagePicker();
 String? im;
-void _openAddVegetbleForm(context) {
+void openAddVegetbleForm(context) {
   showModalBottomSheet(
+    isScrollControlled: true,
     context: (context),
-    builder: (context) => addVegetable(),
+    builder: (context) => addVegetableForm(),
   );
-}
-
-Widget addVegetable() {
-  return Container(
-      child: Column(
-    children: [Text('data'), TextFormField(), TextFormField()],
-  ));
 }
 
 Future<String> convertToString() async {
@@ -44,7 +45,6 @@ class Inventory extends StatefulWidget {
 class _InventoryState extends State<Inventory> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     convertToString();
   }
@@ -60,49 +60,47 @@ class _InventoryState extends State<Inventory> {
               vertical: MediaQuery.of(context).size.width * .050),
           child: SearchBar(event: () {}),
         ),
-        Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 2,
-            padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * .060,
-                vertical: MediaQuery.of(context).size.width * .010),
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 20,
-            children: [
-              InventoryVegetableCard(
-                vege: Vegetable(
-                    name: 'طماطم',
-                    buyingPrizePerKg: 10,
-                    id: '1',
-                    image: im!,
-                    salePrizePerKg: 10),
-              ),
-              InventoryVegetableCard(
-                vege: Vegetable(
-                    name: 'طماطم',
-                    buyingPrizePerKg: 10,
-                    id: ' 1',
-                    image: im!,
-                    salePrizePerKg: 10),
-              ),
-              InventoryVegetableCard(
-                vege: Vegetable(
-                    name: 'طماطم',
-                    buyingPrizePerKg: 10,
-                    id: '1',
-                    image: im!,
-                    salePrizePerKg: 10),
-              ),
-              addCard(
-                onAdd: () {_openAddVegetbleForm(context);},
-              )
-            ],
-          ),
-        )
+        BlocBuilder<VegetabesCubit, VegetabesState>(builder: (_, state) {
+          switch (state.runtimeType) {
+            case VegetablesLoading:
+              return const Center(
+                child: CupertinoActivityIndicator(),
+              );
+            case VegetablesSuccess:
+              return _buildInventoryVegetables(state.vegetables, context);
+            default:
+              return const SizedBox();
+          }
+        })
       ],
     );
   }
+}
+
+Widget _buildInventoryVegetables(List<Vegetable> veges, context) {
+
+  if (veges.isEmpty) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: addCard(),
+    );
+  }
+  return Expanded(
+    child: Wrap(
+      children: [
+        GridView.builder(
+          padding: EdgeInsets.all(15),
+          shrinkWrap: true,
+          itemCount: veges.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 5),
+          itemBuilder: (context, index) =>
+              InventoryVegetableCard(vege: veges[index]),
+        ),
+        Container(width:210,child: addCard())
+      ],
+    ),
+  );
 }
 
 Widget CustomAppBarFirst(context) {
@@ -115,7 +113,7 @@ Widget CustomAppBarFirst(context) {
       actions: [
         IconButton(
           onPressed: () {
-            _openAddVegetbleForm(context);
+            openAddVegetbleForm(context);
           },
           icon: Icon(
             Icons.add,

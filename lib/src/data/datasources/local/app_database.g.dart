@@ -85,7 +85,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `vegetable` (`id` TEXT PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `image` TEXT NOT NULL, `buyingPrizePerKg` INTEGER NOT NULL, `salePrizePerKg` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `vegetable` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `image` TEXT NOT NULL, `buyingPrizePerKg` INTEGER NOT NULL, `salePrizePerKg` INTEGER NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `purchases` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `serialNum` TEXT, `releaseDate` TEXT, `sumOfVegetablePrize` REAL, `discount` REAL, `totalPrize` REAL, `verifyed` INTEGER)');
         await database.execute(
@@ -101,7 +101,7 @@ class _$AppDatabase extends AppDatabase {
   VegetableDao get vegetableDao {
     return _vegetableDaoInstance ??= _$VegetableDao(database, changeListener);
   }
-
+  
   @override
   // TODO: implement purchaseDao
   PurchaseDao get purchaseDao => throw UnimplementedError();
@@ -161,7 +161,7 @@ class _$VegetableDao extends VegetableDao {
   Future<List<Vegetable>> getAllVegetables() async {
     return _queryAdapter.queryList('SELECT * FROM vegetable',
         mapper: (Map<String, Object?> row) => Vegetable(
-            id: row['id'] as String,
+            id: row['id'] as int?,
             name: row['name'] as String,
             image: row['image'] as String,
             buyingPrizePerKg: row['buyingPrizePerKg'] as int,

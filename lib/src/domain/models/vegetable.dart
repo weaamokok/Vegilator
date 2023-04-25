@@ -8,16 +8,16 @@ import 'package:flutter/cupertino.dart';
 
 import '../../utils/constants/strings.dart';
 
-@Entity(tableName: vegetablesTable)
+@Entity(tableName: 'Vegetables')
 class Vegetable extends Equatable {
   @PrimaryKey(autoGenerate: true)
-  final String id;
+  final int? id;
   final String name;
   final String image; //I store the base64Encode of th Uint8list of the image
   final int buyingPrizePerKg;
   final int salePrizePerKg;
   const Vegetable({
-    required this.id,
+     this.id,
     required this.name,
     required this.image,
     required this.buyingPrizePerKg,
@@ -25,7 +25,7 @@ class Vegetable extends Equatable {
   });
 
   Vegetable copyWith({
-    String? id,
+    int? id,
     String? name,
     String? image,
     int? buyingPrizePerKg,
@@ -52,7 +52,7 @@ class Vegetable extends Equatable {
 
   factory Vegetable.fromMap(Map<String, dynamic> map) {
     return Vegetable(
-      id: map['id'] as String,
+      id: map['id'] as int?,
       name: map['name'] as String,
       image: map['image'] as String,
       buyingPrizePerKg: map['buyingPrizePerKg'] as int,
@@ -69,7 +69,7 @@ class Vegetable extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props {
+  List<Object?> get props {
     return [
       id,
       name,

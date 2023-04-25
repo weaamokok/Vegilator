@@ -22,7 +22,7 @@ class Root extends StatefulWidget {
 class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,backgroundColor: Colors.white,
       body: BlocBuilder<NavBarCubit, NavBarState>(
         builder: (context, state) {
           if (state.navbarItem == NavbarItem.dailyRecord) {
