@@ -182,6 +182,12 @@ class _$VegetableDao extends VegetableDao {
   Future<void> deleteVegetable(Vegetable vege) async {
     await _vegetableDeletionAdapter.delete(vege);
   }
+  
+  @override
+  Future<List<Vegetable>> queryVegetable(String vegeName) {
+    // TODO: implement queryVegetable
+    throw UnimplementedError();
+  }
 }
 
 // ignore_for_file: unused_element

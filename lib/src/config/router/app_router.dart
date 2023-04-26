@@ -11,6 +11,10 @@ class AppRouter extends $AppRouter {
           usesPathAsKey: true,
           fullMatch: true,
           page: Root.page,
+        ),AutoRoute(
+          usesPathAsKey: true,
+          fullMatch: true,
+          page: Root.page,
         )
 
         /// routes go here

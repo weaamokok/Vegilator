@@ -15,6 +15,9 @@ class DatabseRepositoryImpl implements DatabaseRepository {
   @override
   Future<List<Vegetable>> getAddedVegetables() {
     return _appDatabase.vegetableDao.getAllVegetables();
+  }  @override
+  Future<List<Vegetable>> queryVegetable(String vegeName) {
+    return _appDatabase.vegetableDao.queryVegetable(vegeName);
   }
 
   @override
@@ -24,7 +27,6 @@ class DatabseRepositoryImpl implements DatabaseRepository {
 
   @override
   Future<void> updateVegetable(Vegetable vege) {
-    // TODO: implement updateVegetable
-    throw UnimplementedError();
+return _appDatabase.vegetableDao.updateVegetable(vege);
   }
 }

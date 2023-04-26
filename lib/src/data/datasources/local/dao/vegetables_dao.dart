@@ -8,6 +8,8 @@ import '../../../../utils/constants/strings.dart';
 abstract class VegetableDao {
   @Query('SELECT * FROM $vegetablesTable')
   Future<List<Vegetable>> getAllVegetables();
+  @Query('SELECT * FROM $vegetablesTable WHERE name LIKE : %vegeName%')
+  Future<List<Vegetable>> queryVegetable(String vegeName);
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertVegetable(Vegetable vege);
   @update

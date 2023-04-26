@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/vegetabes_cubit.dart';
+import 'package:vegilator/src/presentation/views/inventory/addVegetablesForm.dart';
 import 'package:vegilator/src/utils/constants/colors.dart';
 
 import 'circul_Icon_button.dart';
@@ -32,7 +33,16 @@ class InventoryVegetableCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CircularIconButton(icon: Icons.edit, onTap: () {}),
+              InkWell(
+              onTap:(){
+                showModalBottomSheet(isScrollControlled: true,context: context, builder: (context) => addVegetableForm(editVege: vege,),);
+              },
+              child: CircleAvatar(
+          radius: 20,
+          backgroundColor: PrimaryGreen,
+          child: Icon(Icons.edit, color: Colors.white),
+              ),
+            ),
               InkWell(
               onTap:(){
           vegetabesCubit.removeVegetable(vegetable: vege);
