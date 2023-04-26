@@ -32,6 +32,7 @@ class _addVegetableFormState extends State<addVegetableForm> {
   final TextEditingController nameCon = TextEditingController();
   final TextEditingController buyingPrizeCon = TextEditingController();
   final TextEditingController salingPrizeCon = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _FormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -60,12 +61,12 @@ class _addVegetableFormState extends State<addVegetableForm> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                title: Text(
+                                title: const Text(
                                   'هل أنت متأكد من رغبتك في إلغاء العملية؟',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(fontSize: 15),
                                 ),
-                                content: Text(
+                                content: const Text(
                                   'في حال قمت بالمتابعة لن يتم حفظ العنصر',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -77,7 +78,7 @@ class _addVegetableFormState extends State<addVegetableForm> {
                                       onTap: () {
                                         appRouter.pop();
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         "المتابعة",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -85,7 +86,7 @@ class _addVegetableFormState extends State<addVegetableForm> {
                                             fontWeight: FontWeight.normal),
                                       )),
                                   Container(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     decoration: BoxDecoration(
                                         color: Color.fromARGB(255, 193, 58, 49),
@@ -95,7 +96,7 @@ class _addVegetableFormState extends State<addVegetableForm> {
                                         onTap: () {
                                           appRouter.push(const Root());
                                         },
-                                        child: Text(
+                                        child: const Text(
                                           'تجاهل التغيرات',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
@@ -105,9 +106,9 @@ class _addVegetableFormState extends State<addVegetableForm> {
                                         )),
                                   ),
                                 ],
-                                buttonPadding: EdgeInsets.all(20),
+                                buttonPadding: const EdgeInsets.all(20),
                                 actionsAlignment: MainAxisAlignment.spaceAround,
-                                contentPadding: EdgeInsets.symmetric(
+                                contentPadding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 100),
                               );
                             });
@@ -116,6 +117,7 @@ class _addVegetableFormState extends State<addVegetableForm> {
                       }
                     }),
               ),
+             const Divider(color: Black,),
               SizedBox(
                 height: MediaQuery.of(context).size.height * .05,
               ),

@@ -8,9 +8,7 @@ import 'package:vegilator/src/domain/repositories/database_repository.dart';
 import 'package:vegilator/src/locator.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/nav_bar_cubit.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/vegetabes_cubit.dart';
-import 'package:vegilator/src/presentation/views/root.dart';
 import 'package:vegilator/src/config/router/app_router.gr.dart' as r;
-import 'package:sqflite/sqflite.dart';
 final appRouter = AppRouter();
 
 void main()async {
@@ -39,17 +37,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
-        routerConfig: appRouter.config(initialRoutes: [r.Root()]),
+        routerConfig: appRouter.config(initialRoutes: [const r.Root()]),
       ),
     );
   }
 }
 
-class start extends StatelessWidget {
-  const start({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

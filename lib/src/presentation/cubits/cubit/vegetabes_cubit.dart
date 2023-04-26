@@ -38,8 +38,8 @@ class VegetabesCubit extends Cubit<VegetabesState> {
     final vegetables = await _databaseRepository.getAddedVegetables();
     return VegetablesSuccess(vegetables: vegetables);
   }
-  Future<VegetabesState> _getVegetablesByName({required name}) async {
-    final vegetables = await _databaseRepository.getAddedVegetables();
+  Future<VegetabesState> getVegetablesByName({required name}) async {
+    final vegetables = await _databaseRepository.queryVegetable(name);
     return VegetablesSuccess(vegetables: vegetables);
   }
 }

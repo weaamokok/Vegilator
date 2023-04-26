@@ -1,12 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
-import 'package:flutter/cupertino.dart';
 
-import '../../utils/constants/strings.dart';
 
 @Entity(tableName: 'Vegetables')
 class Vegetable extends Equatable {

@@ -3,25 +3,25 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-class user extends Equatable {
+class User extends Equatable {
   final String? name;
   final String? phoneNumber;
   final String? email;
   final String? position;
-  const user({
+  const User({
     this.name,
     this.phoneNumber,
     this.email,
     this.position,
   });
 
-  user copyWith({
+  User copyWith({
     String? name,
     String? phoneNumber,
     String? email,
     String? position,
   }) {
-    return user(
+    return User(
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       email: email ?? this.email,
@@ -38,8 +38,8 @@ class user extends Equatable {
     };
   }
 
-  factory user.fromMap(Map<String, dynamic> map) {
-    return user(
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
       name: map['name'] != null ? map['name'] as String : null,
       phoneNumber: map['phoneNumber'] != null ? map['phoneNumber'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
@@ -49,7 +49,7 @@ class user extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory user.fromJson(String source) => user.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool get stringify => true;

@@ -2,19 +2,16 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:vegilator/src/domain/models/purchase.dart';
-import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 import 'package:vegilator/src/presentation/widgets/invoice_related_widgets/invoice_widget.dart';
-
 import '../../utils/constants/colors.dart';
 import '../widgets/app_bar.dart';
 import 'daily_purchases/adding_purchase_view.dart';
 import 'date_view_in_daily_record.dart';
-import 'inventory/inventory_view.dart';
 
 List<PurchasedVegetables> vagetablesList = [
-  PurchasedVegetables(id: 1, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1),
-  PurchasedVegetables(id: 10, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1)
+  const PurchasedVegetables(id: 1, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1),
+  const PurchasedVegetables(id: 10, purchaseId: 2, amount: 1.5, prize: 12, vegeID: 1)
 ];
 
 class DailyRecord extends StatelessWidget {

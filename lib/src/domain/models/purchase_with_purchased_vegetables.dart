@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 
 import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
-import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 
 class PurchaseWithPurchasedVegetables extends Equatable {
   final Purchase purchase;

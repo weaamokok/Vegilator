@@ -6,5 +6,5 @@ abstract class DatabaseRepository {
   Future<void> addVegetable(Vegetable vege);
   Future<void> updateVegetable(Vegetable vege);
   Future<void> removeVegetable(Vegetable vege);
-  Future<void> queryVegetable(String vegeName);
+  Future<List<Vegetable>> queryVegetable(String vegeName);
 }

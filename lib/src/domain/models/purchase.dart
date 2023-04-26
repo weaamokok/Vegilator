@@ -1,11 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
 
-import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 
 @Entity(tableName: 'purchases')
@@ -56,7 +54,7 @@ class Purchase extends Equatable {
       'id': id,
       'serialNum': serialNum,
       'releaseDate': releaseDate,
-      'veges': veges!.map((x) => x?.toMap()).toList(),
+      'veges': veges!.map((x) => x.toMap()).toList(),
       'sumOfVegetablePrize': sumOfVegetablePrize,
       'discount': discount,
       'totalPrize': totalPrize,

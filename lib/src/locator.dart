@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:floor/floor.dart';
 import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:vegilator/src/data/repositories/database_repository_impl.dart';
 import 'package:vegilator/src/domain/repositories/database_repository.dart';
-import 'package:vegilator/src/utils/constants/strings.dart';
 import 'data/datasources/local/app_database.dart';
 
 //First of all, we need to build our database and this is what we’re doing at the first 2 lines in the initializeDependencies method

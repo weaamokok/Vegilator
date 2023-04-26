@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:async/async.dart';
 import 'package:floor/floor.dart';
 import 'package:vegilator/src/data/datasources/local/dao/purchase_dao.dart';
 import 'package:vegilator/src/data/datasources/local/dao/vegetables_dao.dart';

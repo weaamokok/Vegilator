@@ -85,7 +85,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `vegetable` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `image` TEXT NOT NULL, `buyingPrizePerKg` INTEGER NOT NULL, `salePrizePerKg` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Vegetables` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `image` TEXT NOT NULL, `buyingPrizePerKg` INTEGER NOT NULL, `salePrizePerKg` INTEGER NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `purchases` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `serialNum` TEXT, `releaseDate` TEXT, `sumOfVegetablePrize` REAL, `discount` REAL, `totalPrize` REAL, `verifyed` INTEGER)');
         await database.execute(
@@ -114,7 +114,7 @@ class _$VegetableDao extends VegetableDao {
   )   : _queryAdapter = QueryAdapter(database),
         _vegetableInsertionAdapter = InsertionAdapter(
             database,
-            'vegetable',
+            'Vegetables',
             (Vegetable item) => <String, Object?>{
                   'id': item.id,
                   'name': item.name,
@@ -124,7 +124,7 @@ class _$VegetableDao extends VegetableDao {
                 }),
         _vegetableUpdateAdapter = UpdateAdapter(
             database,
-            'vegetable',
+            'Vegetables',
             ['id'],
             (Vegetable item) => <String, Object?>{
                   'id': item.id,
@@ -135,7 +135,7 @@ class _$VegetableDao extends VegetableDao {
                 }),
         _vegetableDeletionAdapter = DeletionAdapter(
             database,
-            'vegetable',
+            'Vegetables',
             ['id'],
             (Vegetable item) => <String, Object?>{
                   'id': item.id,
@@ -169,6 +169,18 @@ class _$VegetableDao extends VegetableDao {
   }
 
   @override
+  Future<List<Vegetable>> queryVegetable(String vegeName) async {
+    return _queryAdapter.queryList('SELECT * FROM vegetable WHERE name LIKE ?1',
+        mapper: (Map<String, Object?> row) => Vegetable(
+            id: row['id'] as int?,
+            name: row['name'] as String,
+            image: row['image'] as String,
+            buyingPrizePerKg: row['buyingPrizePerKg'] as int,
+            salePrizePerKg: row['salePrizePerKg'] as int),
+        arguments: [vegeName]);
+  }
+
+  @override
   Future<void> insertVegetable(Vegetable vege) async {
     await _vegetableInsertionAdapter.insert(vege, OnConflictStrategy.replace);
   }
@@ -181,12 +193,6 @@ class _$VegetableDao extends VegetableDao {
   @override
   Future<void> deleteVegetable(Vegetable vege) async {
     await _vegetableDeletionAdapter.delete(vege);
-  }
-  
-  @override
-  Future<List<Vegetable>> queryVegetable(String vegeName) {
-    // TODO: implement queryVegetable
-    throw UnimplementedError();
   }
 }
 

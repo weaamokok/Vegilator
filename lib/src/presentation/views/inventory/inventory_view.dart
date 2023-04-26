@@ -6,9 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:vegilator/main.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/vegetabes_cubit.dart';
+import 'package:vegilator/src/presentation/views/inventory/inventory_search.dart' as inv;
 import 'package:vegilator/src/utils/constants/colors.dart';
+import '../../../config/router/app_router.gr.dart';
 import '../../widgets/add_card.dart';
 import '../../widgets/inventory_vegetable_card.dart';
 import '../../widgets/searchbar.dart';
@@ -58,7 +61,7 @@ class _InventoryState extends State<Inventory> {
           margin: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * .050,
               vertical: MediaQuery.of(context).size.width * .050),
-          child: SearchBar(event: () {}),
+          child:           InkWell(onTap:  () {            appRouter.push(const InventorySearch());},child: SearchBar(readOnly: false,eventOnChange:(){} ,)),
         ),
         BlocBuilder<VegetabesCubit, VegetabesState>(builder: (_, state) {
           switch (state.runtimeType) {

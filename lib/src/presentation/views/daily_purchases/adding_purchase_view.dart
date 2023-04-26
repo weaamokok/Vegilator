@@ -17,10 +17,10 @@ class AddingPurchaseView extends StatelessWidget {
         shadowColor: Colors.black54,
         title: const Text('إضافة عملية شراء'),
         leading: const Icon(MdiIcons.close),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: const Icon(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
               Icons.arrow_forward,
             ),
           )
@@ -34,12 +34,12 @@ class AddingPurchaseView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             textDirection: TextDirection.rtl,
             children: [
-              SearchBar(
-                event: () {},
+              const SearchBar(
+             readOnly: true,
               ),
               SizedBox(height: MediaQuery.of(context).size.width * .050),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   'تم شراءها مؤخراً',
                 ),
@@ -70,13 +70,13 @@ class AddingPurchaseView extends StatelessWidget {
                           activeColor: PrimaryGreen,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5))),
-                      Image(image: AssetImage('images/tomato 1.png')),
-                      Text(
+                      const Image(image: AssetImage('images/tomato 1.png')),
+                      const Text(
                         'طماطم',
                         style: TextStyle(fontSize: 12),
                       ),
-                      Text(
-                        '1 ' + 'د/الكيلو ',
+                      const Text(
+                        '1 ' 'د/الكيلو ',
                         style: TextStyle(fontSize: 12),
                       ),
                     ],

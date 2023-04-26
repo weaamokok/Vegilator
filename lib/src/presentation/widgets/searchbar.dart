@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({required this.event});
-  final Function event;
+  const SearchBar({required this.readOnly,this.eventOnChange});
+  final bool readOnly;
+  final Function? eventOnChange;
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextFormField( onChanged:(value) =>  eventOnChange!(value),
       textDirection: TextDirection.rtl,
-      cursorColor: Orange.withOpacity(.5),
+      cursorColor: Orange.withOpacity(.5),enabled: readOnly,
       decoration: InputDecoration(
           hintText: 'ابحث بإسم الخضرة ...',
           hintTextDirection: TextDirection.rtl,
@@ -24,7 +25,8 @@ class SearchBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(color: Grey, width: 1)),
           disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Orange)), //orang from constants
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Grey, width: 1)), //orang from constants
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
     );
   }

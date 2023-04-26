@@ -1,11 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:floor/floor.dart';
 import 'package:equatable/equatable.dart';
-import 'package:retrofit/http.dart';
 
-import 'package:vegilator/src/domain/models/vegetable.dart';
 
 import '../../utils/constants/strings.dart';
 
