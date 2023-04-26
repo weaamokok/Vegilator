@@ -55,7 +55,7 @@ class _RootState extends State<Root> {
               elevation: 20,
               selectedItemColor: PrimaryGreen,
               unselectedItemColor: PrimaryGreen.withOpacity(.5),
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                     icon: Icon(MdiIcons.bookOpenPageVariant),
                     label: 'السجل اليومي'),
