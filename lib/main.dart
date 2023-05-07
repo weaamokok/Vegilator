@@ -6,9 +6,12 @@ import 'package:vegilator/src/config/router/app_router.dart';
 import 'package:vegilator/src/config/themes/app_theme.dart';
 import 'package:vegilator/src/domain/repositories/database_repository.dart';
 import 'package:vegilator/src/locator.dart';
+import 'package:vegilator/src/presentation/cubits/blocs/purchase/purchase_bloc.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/nav_bar_cubit.dart';
+import 'package:vegilator/src/presentation/cubits/cubit/purchased%20vegetables/purchased_vegetables_cubit.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/vegetabes_cubit.dart';
 import 'package:vegilator/src/config/router/app_router.gr.dart' as r;
+import 'package:vegilator/src/presentation/views/daily_purchases/adding_purchase_view.dart';
 final appRouter = AppRouter();
 
 void main()async {
@@ -32,6 +35,12 @@ class MyApp extends StatelessWidget {
           create: (context) => VegetabesCubit(
             locator<DatabaseRepository>(),
           )..getAllSavedVegetables(),
+        ), BlocProvider(
+          create: (context) =>PurchaseBloc (
+          )..add( PurchaseLoad()),child: AddingPurchaseView(),
+        ),BlocProvider(
+          create: (context) =>PurchasedVegetablesCubit (
+          ),child: AddingPurchaseView(),
         )
       ],
       child: MaterialApp.router(

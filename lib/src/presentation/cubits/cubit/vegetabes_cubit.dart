@@ -12,34 +12,38 @@ class VegetabesCubit extends Cubit<VegetabesState> {
   final DatabaseRepository _databaseRepository;
   VegetabesCubit(this._databaseRepository) : super(const VegetablesLoading());
   //We’ve also defined multiple methods that will be called directly from the UI in which they contains the implementation of our database and the repository.
-  Future<void> getAllSavedVegetables() async {
-    emit(await _getAllSavedVegetables());
-  }
+  // Future<void> getAllSavedVegetables() async {
+  //   emit(await _getAllSavedVegetables());
+  // }
 
   //that deletes vegetable
   Future<void> removeVegetable({required Vegetable vegetable}) async {
     await _databaseRepository.removeVegetable(vegetable);
-    emit(await _getAllSavedVegetables());
+    emit(await getAllSavedVegetables());
   }
 
   Future<void> addVegetable({required Vegetable vege}) async {
     await _databaseRepository.addVegetable(vege).whenComplete(() => debugPrint('added sucessfully'));
 
-    emit(await _getAllSavedVegetables());
+    emit(await getAllSavedVegetables());
   }
 
   Future<void> updateVegetable({required Vegetable vege}) async {
     await _databaseRepository.updateVegetable(vege);
-    emit(await _getAllSavedVegetables());
+    emit(await getAllSavedVegetables());
   }
 
 //that connects with database, returns a success state
-  Future<VegetabesState> _getAllSavedVegetables() async {
+  Future<VegetabesState> getAllSavedVegetables() async {
     final vegetables = await _databaseRepository.getAddedVegetables();
     return VegetablesSuccess(vegetables: vegetables);
   }
   Future<VegetabesState> getVegetablesByName({required name}) async {
     final vegetables = await _databaseRepository.queryVegetable(name);
+    return VegetablesSuccess(vegetables: vegetables);
+  }
+    Future<VegetabesState> getVegetablesById({required id}) async {
+    final vegetables = await _databaseRepository.queryVegetableById(id);
     return VegetablesSuccess(vegetables: vegetables);
   }
 }

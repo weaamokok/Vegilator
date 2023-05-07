@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/presentation/widgets/UI_elements/zigzag.dart';
 
+import '../../../domain/models/purchase.dart';
 import '../../../utils/constants/colors.dart';
 import '../UI_elements/dashed_line.dart';
 

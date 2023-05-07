@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/presentation/widgets/icon_text_card.dart';
 import 'package:vegilator/src/utils/constants/colors.dart';
 
+import '../../domain/models/purchase.dart';
 import '../widgets/UI_elements/dashed_line.dart';
 import '../widgets/invoice_related_widgets/invoice_paper.dart';
 import '../widgets/UI_elements/zigzag.dart';

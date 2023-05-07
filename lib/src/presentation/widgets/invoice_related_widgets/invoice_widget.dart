@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/presentation/views/invoice_View.dart';
 
+import '../../../domain/models/purchase.dart';
 import '../../../utils/constants/colors.dart';
 
 class InvoiceWidget extends StatelessWidget {

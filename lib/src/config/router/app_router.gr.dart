@@ -34,7 +34,7 @@ abstract class $AppRouter extends _i4.RootStackRouter {
     InventorySearch.name: (routeData) {
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.InventorySearch(),
+        child: const _i3.InventorySearch(),
       );
     },
   };

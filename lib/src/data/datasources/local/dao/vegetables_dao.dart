@@ -10,6 +10,9 @@ abstract class VegetableDao {
   Future<List<Vegetable>> getAllVegetables();
   @Query('SELECT * FROM $vegetablesTable WHERE name LIKE :vegeName')
   Future<List<Vegetable>> queryVegetable(String vegeName);
+
+ @Query('SELECT * FROM $vegetablesTable WHERE id = :id')
+  Future<List<Vegetable>> queryVegetableById(int id);
   @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertVegetable(Vegetable vege);
   @update
