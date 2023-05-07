@@ -58,6 +58,7 @@ dependencies:
   easy_splash_screen: ^1.0.4
   material_design_icons_flutter: ^6.0.7096
   image_picker: ^0.8.7+3
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:

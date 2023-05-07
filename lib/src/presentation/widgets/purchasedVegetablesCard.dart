@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 import 'package:vegilator/src/presentation/cubits/blocs/purchase/purchase_bloc.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/purchased%20vegetables/purchased_vegetables_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:vegilator/src/utils/constants/strings.dart';
 
 import '../../utils/constants/colors.dart';
 import '../cubits/cubit/vegetabes_cubit.dart';
+import '../provider/purchaseProviding.dart';
 
 class PurchasedVegetableCard extends StatelessWidget {
   final PurchasedVegetables purchasedVegetable;
@@ -45,8 +47,10 @@ class PurchasedVegetableCard extends StatelessWidget {
                       Checkbox(
                           value:purchasedVegetable.selected ,
                           onChanged: (bool? h) {
-print(purchasedVegetable);
-                            pvegetabesCubit.updatePurchasedVeges(purchasedVegetable);
+
+print( Provider.of<PurchaseProvider>(context,listen: false).purchasedVeges);
+ Provider.of<PurchaseProvider>(context,listen: false).updateSelectionOfPurchasedVege(purchasedVegetable.copyWith(selected: !purchasedVegetable.selected!));
+                        //    pvegetabesCubit.updatePurchasedVeges(purchasedVegetable);
                           //  print('$h' + ' debug');
                             // purchasedVegetabesCubit.updatePurchasedVeges(purchasedVegetable);
 // purchaseBloc.(  purchasedVegetable.copyWith(

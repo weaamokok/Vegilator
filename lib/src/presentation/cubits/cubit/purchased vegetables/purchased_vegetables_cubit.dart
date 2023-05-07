@@ -12,7 +12,7 @@ class PurchasedVegetablesCubit extends Cubit<PurchasedVegetablesState> {
 void updatePurchasedVeges(PurchasedVegetables purchased){
 
 
-      
+    
    print('from cubit ${purchased.selected}');
 
    emit(PurchasedVegetablesSelected(purchasedVegetables: purchased.copyWith(selected:!purchased.selected!)));

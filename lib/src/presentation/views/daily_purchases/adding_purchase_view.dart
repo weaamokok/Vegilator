@@ -1,22 +1,24 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:vegilator/main.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 import 'package:vegilator/src/domain/models/to_purchase.dart';
 import 'package:vegilator/src/presentation/cubits/cubit/purchased%20vegetables/purchased_vegetables_cubit.dart';
+import 'package:vegilator/src/presentation/provider/purchaseProviding.dart';
 
 import '../../../domain/models/vegetable.dart';
 import '../../../utils/constants/colors.dart';
 import '../../cubits/cubit/vegetabes_cubit.dart';
 import '../../widgets/purchasedVegetablesCard.dart';
 import '../../widgets/searchbar.dart';
-
+//I tried to fetch the data from inventory and dispaly it here 
+//then user select items and these items are moved to somthing like cart and displayed as cards where user can adjest
+//the amount and price they want
 List selecteItems = [];
-final List<PurchasedVegetables> purchasedVeges = [];
 
 class AddingPurchaseView extends StatefulWidget {
   const AddingPurchaseView({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
         BlocProvider.of<PurchasedVegetablesCubit>(context);
 
     return Scaffold(
-      appBar: _PurchaseAppbar(),
+      appBar: _PurchaseAppbar(context),
       body: Container(
         padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * .050,
@@ -50,7 +52,7 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
                SearchBar(
                 readOnly: true,
               ),
-              InkWell(onTap: () => print(purchasedVeges),child: Container(width: 100,height: 50, color: Colors.red,)),
+              InkWell(onTap: () => print(  Provider.of<PurchaseProvider>(context,listen: false).purchasedVeges),child: Container(width: 100,height: 50, color: Colors.red,)),
               SizedBox(height: MediaQuery.of(context).size.width * .030),
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -64,12 +66,12 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
                   if (snapshot.hasData) {
                     final veges = snapshot.data!.vegetables;
                     veges.forEach((element) async {
-                      purchasedVeges.add(PurchasedVegetables(
+                      Provider.of<PurchaseProvider>(context).purchasedVeges.add(PurchasedVegetables(
                           vegeID: element.id, selected: false));
                     });
                     purchasedVegetabesCubit.emit((PurchasedVegetablesLoaded(
                         purchasedVegetables:
-                            ToPurchase(purchasedVegetables: purchasedVeges))));
+                            ToPurchase(purchasedVegetables: Provider.of<PurchaseProvider>(context).purchasedVeges))));
                     return ListView.builder(
                         shrinkWrap: true,
                         itemCount: veges.length,
@@ -77,7 +79,7 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
                           // purchasedVeges.add(
                           //     PurchasedVegetables(vegeID: veges[index].id));
                           return PurchasedVegetableCard(
-                              purchasedVegetable: purchasedVeges[index]
+                              purchasedVegetable: Provider.of<PurchaseProvider>(context).purchasedVeges[index]
                                   );
                         });
                   } else {
@@ -106,7 +108,7 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
   }
 }
 
-PreferredSize _PurchaseAppbar() {
+PreferredSize _PurchaseAppbar(context) {
   return PreferredSize(
     preferredSize: Size(double.infinity, 70),
     child: AppBar(
@@ -123,7 +125,7 @@ PreferredSize _PurchaseAppbar() {
           padding: EdgeInsets.symmetric(vertical: 20),
           onPressed: () {
             appRouter.pop();
-            purchasedVeges.clear();
+            Provider.of<PurchaseProvider>(listen: false,context).purchasedVeges.clear();
           },
           icon: Icon(MdiIcons.close)),
       actions: const [
