@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
-import 'package:vegilator/src/presentation/cubits/blocs/purchase/purchase_bloc.dart';
-import 'package:vegilator/src/presentation/cubits/cubit/purchased%20vegetables/purchased_vegetables_cubit.dart';
-import 'package:vegilator/src/utils/constants/strings.dart';
 
 import '../../utils/constants/colors.dart';
 import '../cubits/cubit/vegetabes_cubit.dart';
@@ -18,10 +15,8 @@ class PurchasedVegetableCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final purchaseBloc =
-        BlocProvider.of<PurchaseBloc>(context);
+    
     final vegetabesCubit = BlocProvider.of<VegetabesCubit>(context);
-    final pvegetabesCubit = BlocProvider.of<PurchasedVegetablesCubit>(context);
     return FutureBuilder(
         future: vegetabesCubit.getVegetablesById(id: purchasedVegetable.vegeID),
         builder: (context, snapshot) {
@@ -48,31 +43,6 @@ class PurchasedVegetableCard extends StatelessWidget {
                           value:purchasedVegetable.selected ,
                           onChanged: (bool? h) {
 
-print( Provider.of<PurchaseProvider>(context,listen: false).purchasedVeges);
- Provider.of<PurchaseProvider>(context,listen: false).updateSelectionOfPurchasedVege(purchasedVegetable.copyWith(selected: !purchasedVegetable.selected!));
-                        //    pvegetabesCubit.updatePurchasedVeges(purchasedVegetable);
-                          //  print('$h' + ' debug');
-                            // purchasedVegetabesCubit.updatePurchasedVeges(purchasedVegetable);
-// purchaseBloc.(  purchasedVegetable.copyWith(
-//                                             selected: purchasedVegetable
-//                                                 .selected==true?false:true));
-// purchaseBloc.add(   PurchaseVegetablesUpdated(
-//                                     purchasedVegetables:
-//                                         purchasedVegetable.copyWith(
-//                                             selected: !purchasedVegetable
-//                                                 .selected!)));
-// purchaseBloc.mapEventToState( PurchaseVegetablesUpdated(
-//                                purchasedVegetables:
-//                                          purchasedVegetable.copyWith(
-//                                              selected: !purchasedVegetable
-//                                                  .selected!)));
-
-//                             context.read<PurchaseBloc>().add(
-//                                 PurchaseVegetablesUpdated(
-//                                     purchasedVegetables:
-//                                         purchasedVegetable.copyWith(
-//                                             selected: !purchasedVegetable
-//                                                 .selected!)));
                           },
                           activeColor: PrimaryGreen,
                           shape: RoundedRectangleBorder(

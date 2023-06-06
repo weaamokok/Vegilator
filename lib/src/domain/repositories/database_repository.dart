@@ -1,4 +1,3 @@
-import 'package:vegilator/src/domain/models/purchase.dart';
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
 import 'package:vegilator/src/domain/models/vegetable.dart';
 

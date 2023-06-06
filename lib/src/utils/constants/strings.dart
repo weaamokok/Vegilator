@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 const String usersTable = 'users_table';
-const String vegetablesTable = 'vegetable';
+const String vegetablesTable = 'Vegetables';
 const String purchasedVegetables = 'purchasedVegetables';
 const String purchaseWithPurchasedVegetables = 'purchaseWithPurchasedVegetablesTable';
 const String databaseName = 'Vegilator.db';

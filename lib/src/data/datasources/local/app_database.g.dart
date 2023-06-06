@@ -170,7 +170,7 @@ class _$VegetableDao extends VegetableDao {
 
   @override
   Future<List<Vegetable>> getAllVegetables() async {
-    return _queryAdapter.queryList('SELECT * FROM vegetable',
+    return _queryAdapter.queryList('SELECT * FROM Vegetables',
         mapper: (Map<String, Object?> row) => Vegetable(
             id: row['id'] as int?,
             name: row['name'] as String,
@@ -181,7 +181,7 @@ class _$VegetableDao extends VegetableDao {
 
   @override
   Future<List<Vegetable>> queryVegetable(String vegeName) async {
-    return _queryAdapter.queryList('SELECT * FROM vegetable WHERE name LIKE ?1',
+    return _queryAdapter.queryList('SELECT * FROM Vegetables WHERE name LIKE ?1',
         mapper: (Map<String, Object?> row) => Vegetable(
             id: row['id'] as int?,
             name: row['name'] as String,
@@ -193,7 +193,7 @@ class _$VegetableDao extends VegetableDao {
 
   @override
   Future<List<Vegetable>> queryVegetableById(int id) async {
-    return _queryAdapter.queryList('SELECT * FROM vegetable WHERE id = ?1',
+    return _queryAdapter.queryList('SELECT * FROM Vegetables WHERE id = ?1',
         mapper: (Map<String, Object?> row) => Vegetable(
             id: row['id'] as int?,
             name: row['name'] as String,

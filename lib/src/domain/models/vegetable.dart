@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
 
 
-@Entity(tableName: 'Vegetables')
+@Entity(tableName: 'vegetable')
 class Vegetable extends Equatable {
   @PrimaryKey(autoGenerate: true)
   final int? id;

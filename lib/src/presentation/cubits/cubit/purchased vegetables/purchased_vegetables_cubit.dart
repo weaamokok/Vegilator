@@ -13,10 +13,8 @@ void updatePurchasedVeges(PurchasedVegetables purchased){
 
 
     
-   print('from cubit ${purchased.selected}');
 
    emit(PurchasedVegetablesSelected(purchasedVegetables: purchased.copyWith(selected:!purchased.selected!)));
-      print('after cubit ${!purchased.selected!}');
 
 //           state.purchased.map((purchasedVeges) {
 // purchasedVeges.amount == event.purchasedVegetables.amount) &&

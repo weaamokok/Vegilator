@@ -2,13 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:vegilator/src/domain/models/purchase.dart';
+
 import 'package:vegilator/src/domain/models/purchasedVegetables.dart';
-import 'package:vegilator/src/domain/models/vegetable.dart';
 
 import '../../../../domain/models/to_purchase.dart';
-import '../../cubit/vegetabes_cubit.dart';
 
 part 'purchase_event.dart';
 part 'purchase_state.dart';
