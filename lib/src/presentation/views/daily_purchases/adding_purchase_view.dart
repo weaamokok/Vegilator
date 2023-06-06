@@ -14,8 +14,9 @@ import '../../../domain/models/vegetable.dart';
 import '../../../utils/constants/colors.dart';
 import '../../cubits/cubit/vegetabes_cubit.dart';
 import '../../widgets/purchasedVegetablesCard.dart';
-import '../../widgets/searchbar.dart';
-//I tried to fetch the data from inventory and dispaly it here 
+import '../../widgets/searchbar.dart' as searchbar;
+
+//I tried to fetch the data from inventory and dispaly it here
 //then user select items and these items are moved to somthing like cart and displayed as cards where user can adjest
 //the amount and price they want
 List selecteItems = [];
@@ -49,10 +50,10 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             textDirection: TextDirection.rtl,
             children: [
-               SearchBar(
+              searchbar.SearchBar(
                 readOnly: true,
               ),
-              InkWell(onTap: () => print(  Provider.of<PurchaseProvider>(context,listen: false).purchasedVeges),child: Container(width: 100,height: 50, color: Colors.red,)),
+            
               SizedBox(height: MediaQuery.of(context).size.width * .030),
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -63,15 +64,9 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
               FutureBuilder(
                 future: vegetabesCubit.getAllSavedVegetables(),
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final veges = snapshot.data!.vegetables;
-                    veges.forEach((element) async {
-                      Provider.of<PurchaseProvider>(context).purchasedVeges.add(PurchasedVegetables(
-                          vegeID: element.id, selected: false));
-                    });
-                    purchasedVegetabesCubit.emit((PurchasedVegetablesLoaded(
-                        purchasedVegetables:
-                            ToPurchase(purchasedVegetables: Provider.of<PurchaseProvider>(context).purchasedVeges))));
+                  if (snapshot.data!=null) {
+                    final veges = snapshot.data!.vegetables;//from db
+             //  print(veges);
                     return ListView.builder(
                         shrinkWrap: true,
                         itemCount: veges.length,
@@ -79,8 +74,9 @@ class _AddingPurchaseViewState extends State<AddingPurchaseView> {
                           // purchasedVeges.add(
                           //     PurchasedVegetables(vegeID: veges[index].id));
                           return PurchasedVegetableCard(
-                              purchasedVegetable: Provider.of<PurchaseProvider>(context).purchasedVeges[index]
-                                  );
+                              purchasedVegetable:
+                                  Provider.of<PurchaseProvider>(context)
+                                      .purchasedVeges[index]);
                         });
                   } else {
                     return Center(
@@ -125,7 +121,9 @@ PreferredSize _PurchaseAppbar(context) {
           padding: EdgeInsets.symmetric(vertical: 20),
           onPressed: () {
             appRouter.pop();
-            Provider.of<PurchaseProvider>(listen: false,context).purchasedVeges.clear();
+            Provider.of<PurchaseProvider>(context, listen: false)
+                .purchasedVeges
+                .clear();
           },
           icon: Icon(MdiIcons.close)),
       actions: const [
